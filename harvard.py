@@ -35,7 +35,7 @@ def run_bot():
 
     filename = "data/harvard/harvard.csv"
     f = open(filename, "a+", encoding="utf-8")
-    for file in sorted(glob.glob('data/harvard/saved_pages/*.html')):
+    for file in sorted(glob.glob('data/harvard/saved_pages/*.html'), key=lambda x: int(x.split('pages\\')[1][:-5])):
         page_soup = load_html(file)
         extracted_data = parse_html(page_soup, parse_harvard_pages)
         f.write(extracted_data)
